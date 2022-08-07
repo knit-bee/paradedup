@@ -1,6 +1,6 @@
-from dataclasses import dataclass
 import re
-from typing import Set
+from dataclasses import dataclass
+from typing import Set, Union
 
 
 @dataclass
@@ -24,13 +24,13 @@ class Preprocessor:
             text = re.sub(r"[^\w\s\dÄÖÜäöüẞß]", "", text)
         return text
 
-    def create_shingle_set(self, document: str) -> set:
+    def create_shingle_set(self, document: str) -> Set[str]:
         if self.use_token:
             pattern = r"(\w)([^\w\d\sÄÖÜöäüẞß])"
             text = re.sub(pattern, r"\1 \2", document)
             tokens = text.split()
             return {
-                tuple(tokens[i : i + self.shingle_size])
+                ".".join(tokens[i : i + self.shingle_size])
                 for i in range(len(tokens) - (self.shingle_size - 1))
             }
         return {
