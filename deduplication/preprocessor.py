@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass
-from typing import Set, Union
+from typing import Set
 
 
 @dataclass
