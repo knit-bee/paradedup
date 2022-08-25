@@ -12,7 +12,9 @@ class CandidateSearcher:
         self.lsh = datasketch.MinHashLSH(threshold=lsh_threshold, num_perm=num_perm)
 
     def insert_document_sketch(self, document_sketch: DocumentSketch) -> None:
-        self.lsh.insert(document_sketch.doc_id, document_sketch.sketch)
+        self.lsh.insert(
+            document_sketch.doc_id, document_sketch.sketch, check_duplication=False
+        )
 
     def get_candidates_for_document(
         self, document_sketch: DocumentSketch
