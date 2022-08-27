@@ -31,7 +31,8 @@ class NddPipeline:
         return nd_candidates
 
     def _add_file_to_database(self, file_name: str, file_content: str) -> None:
-        shingles = self.preprocessor.preprocess_document(file_content)
+        processed = self.preprocessor.preprocess_document(file_content)
+        shingles = self.preprocessor.create_shingle_set(processed)
         doc_sketch = self.minhasher.create_document_sketch(file_name, shingles)
         self.id_to_doc_sketch_mapping[doc_sketch.doc_id] = doc_sketch
         self.candidate_searcher.insert_document_sketch(doc_sketch)

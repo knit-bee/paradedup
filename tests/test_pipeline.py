@@ -29,7 +29,7 @@ class NddPipelineTester(unittest.TestCase):
         self.doc_processor = MockDocumentProcessor()
         self.preprocessor = Preprocessor()
         self.minhasher = MinHasher()
-        self.searcher = CandidateSearcher()
+        self.searcher = CandidateSearcher(lsh_threshold=0.3)
         self.ranker = CandidateRanker()
         self.pipeline = NddPipeline(
             document_processor=self.doc_processor,
