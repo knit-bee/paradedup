@@ -1,12 +1,12 @@
 import os
 import unittest
 
-from deduplication.document_processing import DocumentProcessor
+from deduplication.document_processing import DocumentProcessorImpl
 
 
 class FileProcessorTester(unittest.TestCase):
     def setUp(self):
-        self.processor = DocumentProcessor()
+        self.processor = DocumentProcessorImpl()
         self.test_data = os.path.join("tests", "testdata")
 
     def test_all_files_from_directory_loaded(self):
