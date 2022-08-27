@@ -12,7 +12,7 @@ class FileProcessorTester(unittest.TestCase):
     def test_all_files_from_directory_loaded(self):
         test_dir = os.path.join(self.test_data, "txt")
         file_content = sorted(
-            [content.strip() for content in self.processor.load_files(test_dir)]
+            [content.strip() for _, content in self.processor.load_files(test_dir)]
         )
         expected = [
             "first sentence, text. more text.",
