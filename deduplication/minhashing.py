@@ -9,6 +9,7 @@ import datasketch
 class DocumentSketch:
     doc_id: uuid.UUID
     sketch: datasketch.MinHash
+    file_name: str
     candidates: list = field(default_factory=list)
 
 
@@ -16,10 +17,13 @@ class MinHasher:
     def __init__(self, num_perm: int = 128):
         self._num_perm = num_perm
 
-    def create_document_sketch(self, shingle_set: Set[str]) -> DocumentSketch:
+    def create_document_sketch(
+        self, file_name: str, shingle_set: Set[str]
+    ) -> DocumentSketch:
         return DocumentSketch(
             doc_id=uuid.uuid4(),
             sketch=self.create_minhash_from_shingle_set(shingle_set),
+            file_name=file_name,
         )
 
     def create_minhash_from_shingle_set(self, shingles: Set[str]) -> datasketch.MinHash:

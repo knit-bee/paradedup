@@ -40,23 +40,29 @@ class MinHasherTester(unittest.TestCase):
     def test_id_of_document_sketch_is_UUID(self):
         minhasher = MinHasher()
         shingle_set = {"a", "b", "c"}
-        doc = minhasher.create_document_sketch(shingle_set)
+        doc = minhasher.create_document_sketch("file", shingle_set)
         self.assertTrue(isinstance(doc.doc_id, UUID))
 
     def test_returns_document_sketch(self):
         minhasher = MinHasher()
         shingle_set = {"a", "b", "c"}
-        doc = minhasher.create_document_sketch(shingle_set)
+        doc = minhasher.create_document_sketch("file", shingle_set)
         self.assertTrue(isinstance(doc, DocumentSketch))
 
     def test_candidate_list_of_document_empty_after_creation(self):
         minhasher = MinHasher()
         shingle_set = {"a", "b", "c"}
-        doc = minhasher.create_document_sketch(shingle_set)
+        doc = minhasher.create_document_sketch("file", shingle_set)
         self.assertEqual(doc.candidates, [])
 
     def test_document_sketch_contains_minhash(self):
         minhasher = MinHasher()
         shingle_set = {"a", "b", "c"}
-        doc = minhasher.create_document_sketch(shingle_set)
+        doc = minhasher.create_document_sketch("file", shingle_set)
         self.assertTrue(isinstance(doc.sketch, MinHash))
+
+    def test_document_sketch_contains_file_name(self):
+        minhasher = MinHasher()
+        shingle_set = {"a", "b", "c"}
+        doc = minhasher.create_document_sketch("file", shingle_set)
+        self.assertEqual(doc.file_name, "file")
