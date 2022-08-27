@@ -1,10 +1,11 @@
 from dataclasses import dataclass, field
 from typing import Dict
+from uuid import UUID
 
 from deduplication.candidate_ranker import CandidateRanker
 from deduplication.candidate_searcher import CandidateSearcher
 from deduplication.document_processing import DocumentProcessor
-from deduplication.minhashing import MinHasher, DocumentSketch
+from deduplication.minhashing import DocumentSketch, MinHasher
 from deduplication.preprocessor import Preprocessor
 
 
@@ -15,7 +16,7 @@ class NddPipeline:
     minhasher: MinHasher
     candidate_searcher: CandidateSearcher
     candidate_ranker: CandidateRanker
-    id_to_doc_sketch_mapping: Dict[str, DocumentSketch] = field(default_factory=dict)
+    id_to_doc_sketch_mapping: Dict[UUID, DocumentSketch] = field(default_factory=dict)
 
     def find_near_duplicates(self, directory: str) -> Dict[str, list]:
         for file_name, content in self.document_processor.load_files(directory):
