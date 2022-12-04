@@ -25,7 +25,7 @@ exclude = ["tests"]
 namespace = false
 
 [project.scripts]
-tei-transform = "deduplication.__main__:main"
+paradedup = "deduplication.__main__:main"
 
 # testing and dev tools
 [project.optional-dependencies]
