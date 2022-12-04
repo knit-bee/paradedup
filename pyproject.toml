@@ -29,11 +29,13 @@ tei-transform = "deduplication.__main__:main"
 
 # testing and dev tools
 [project.optional-dependencies]
-test = ["pytest>=7"]
-checks = [
-    "black>=22.0.0",
+test = [
+    "pytest>=7",
     "flake8>=4.0.0",
     "mypy>=0.7",
+    ]
+checks = [
+    "black>=22.0.0",
     "coverage>6.0",
     "isort>=5.9.0"
     ]
