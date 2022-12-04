@@ -1,0 +1,7 @@
+[flake8]
+exclude =
+  site-packages
+filename =
+  *.py
+ignore = E203
+max_line_length=127
