@@ -12,9 +12,9 @@ class CandidateRanker:
     def rank_candidates(
         self, target_doc: DocumentSketch, candidates: List[DocumentSketch]
     ) -> list:
-        scores = []
+        candidate_ranking = []
         for doc in candidates:
             similarity_score = self._compute_document_similarity(target_doc, doc)
-            scores.append((doc.doc_id, similarity_score))
+            candidate_ranking.append((doc.doc_id, similarity_score))
 
-        return sorted(scores, key=lambda x: x[1], reverse=True)
+        return sorted(candidate_ranking, key=lambda x: x[1], reverse=True)
