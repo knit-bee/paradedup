@@ -29,8 +29,12 @@ class Preprocessor:
             pattern = r"(\w)([^\w\d\sÄÖÜöäüẞß])"
             text = re.sub(pattern, r"\1 \2", document)
             tokens = text.split()
+            if self.shingle_size > 1 and len(tokens) % self.shingle_size != 0:
+                tokens.extend(
+                    [""] * (self.shingle_size - (len(tokens) % self.shingle_size))
+                )
             return {
-                ".".join(tokens[i : i + self.shingle_size])
+                "~".join(tokens[i : i + self.shingle_size])
                 for i in range(len(tokens) - (self.shingle_size - 1))
             }
         return {
