@@ -26,8 +26,8 @@ class Preprocessor:
 
     def create_shingle_set(self, document: str) -> Set[str]:
         if self.use_token:
-            pattern = r"(\w)([^\w\d\sÄÖÜöäüẞß])"
-            text = re.sub(pattern, r"\1 \2", document)
+            pattern = r"(\w*)([^\w\d\sÄÖÜöäüẞß])"
+            text = re.sub(pattern, r"\1 \2 ", document)
             tokens = text.split()
             if self.shingle_size > 1 and len(tokens) % self.shingle_size != 0:
                 tokens.extend(
