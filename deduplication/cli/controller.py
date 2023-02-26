@@ -23,8 +23,8 @@ class DedupController:
             "--output",
             "-o",
             help="""Name of output file to store results of near-duplicate detection.
-             Default is 'output.csv'.""",
-            default="output.csv",
+             Default is 'output.json'.""",
+            default="output.json",
         )
         parser.add_argument(
             "--permutations",

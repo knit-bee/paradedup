@@ -25,18 +25,18 @@ class DedupControllerTester(unittest.TestCase):
         self.assertEqual(self.use_case.request.directory, dir_name)
 
     def test_controller_extracts_output_file_name(self):
-        output = "out.csv"
+        output = "out.json"
         self.controller.process_arguments(["test", "--output", output])
         self.assertEqual(self.use_case.request.output_file, output)
 
     def test_controller_extracts_output_file_name_with_short_handle(self):
-        output = "out.csv"
+        output = "out.json"
         self.controller.process_arguments(["test", "-o", output])
         self.assertEqual(self.use_case.request.output_file, output)
 
     def test_default_for_output_file_set_if_not_passed(self):
         self.controller.process_arguments(["test"])
-        self.assertEqual(self.use_case.request.output_file, "output.csv")
+        self.assertEqual(self.use_case.request.output_file, "output.json")
 
     def test_controller_extracts_character_level(self):
         self.controller.process_arguments(["test", "--character-shingle"])
@@ -50,7 +50,7 @@ class DedupControllerTester(unittest.TestCase):
         self.controller.process_arguments(["test"])
         expected = Request(
             directory="test",
-            output_file="output.csv",
+            output_file="output.json",
             use_token=True,
             shingle_size=3,
             case_insensitive=False,
