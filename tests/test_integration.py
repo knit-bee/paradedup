@@ -1,6 +1,7 @@
-import unittest
-import os
 import json
+import os
+import unittest
+
 from deduplication.cli.use_case import DeduplicationUseCaseImpl, Request
 
 

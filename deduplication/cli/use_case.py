@@ -1,6 +1,7 @@
+import json
 from dataclasses import dataclass
 from typing import Protocol
-import json
+
 from deduplication.candidate_ranker import CandidateRanker
 from deduplication.candidate_searcher import CandidateSearcher
 from deduplication.document_processing import DocumentProcessorImpl
