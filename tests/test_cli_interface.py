@@ -1,5 +1,6 @@
 import subprocess
 import tempfile
+import os
 
 
 def test_package_callable_without_error():
@@ -14,6 +15,8 @@ def test_package_callable_with_arguements():
             with open(tmp_file, "w") as fp:
                 fp.write("some text")
         process = subprocess.run(
-            ["paradedup", tempdir], check=True, capture_output=True
+            ["paradedup", tempdir, "-o", os.path.join(tempdir, "out")],
+            check=True,
+            capture_output=True,
         )
     assert process.returncode == 0
