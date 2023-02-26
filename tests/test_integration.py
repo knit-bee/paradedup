@@ -21,11 +21,11 @@ class IntegrationTester(unittest.TestCase):
         with open(self.out_file, "r") as fh:
             content = json.load(fh)
         self.assertEqual(
-            list(content.keys()),
+            sorted(list(content.keys())),
             [
+                os.path.join("tests", "testdata", "txt", "file1.txt"),
                 os.path.join("tests", "testdata", "txt", "file2.txt"),
                 os.path.join("tests", "testdata", "txt", "file3.txt"),
-                os.path.join("tests", "testdata", "txt", "file1.txt"),
             ],
         )
 
@@ -40,7 +40,7 @@ class IntegrationTester(unittest.TestCase):
             [],
         )
 
-    def test_run_deduplication_with__char_shingle_option(self):
+    def test_run_deduplication_with_char_shingle_option(self):
         test_dir = os.path.join("tests", "testdata", "nested")
         request = Request(
             directory=test_dir, output_file=self.out_file, use_token=False
