@@ -193,3 +193,20 @@ German letters like ä, Ö & ßẞ  !"""
         preprocessor = Preprocessor(shingle_size=3)
         result = preprocessor.create_shingle_set(test_doc)
         self.assertEqual(result, {"Wesensunterschied~Transformation~"})
+
+    def test_interpunction_split_from_word_boundaries(self):
+        text = '\'Ein Text mit! "Anführungszeichen" u.a.'
+        result = Preprocessor().create_shingle_set(text)
+        expected = {
+            "'~Ein~Text",
+            "Ein~Text~mit",
+            "Text~mit~!",
+            'mit~!~"',
+            '!~"~Anführungszeichen',
+            '"~Anführungszeichen~"',
+            'Anführungszeichen~"~u',
+            '"~u~.',
+            "u~.~a",
+            ".~a~.",
+        }
+        self.assertEqual(result, expected)
